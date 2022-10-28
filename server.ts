@@ -164,7 +164,10 @@ app.get('/ip', (req: any, res: any) => {
 })
 
 app.get('*', async (req: any, res: any) => {
-    res.redirect('https://core.app/tools/testnet-faucet')
+    const chain = req.query.subnet
+    const erc20 = req.query.erc20
+
+    res.redirect(`https://core.app/tools/testnet-faucet${chain ? '?subnet=' + chain + (erc20 ? '&erc20=' + erc20 : '') : ''}`)
 })
 
 app.listen(process.env.PORT || 8000, () => {
