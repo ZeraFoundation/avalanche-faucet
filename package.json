@@ -7,10 +7,9 @@
     "node": ">=17"
   },
   "scripts": {
-    "postinstall": "npm install --prefix client",
-    "build": "npx tsc && npm run build --prefix client",
+    "build": "npx tsc",
     "start": "node build/server.js",
-    "dev": "npx --yes concurrently \"npx --yes nodemon server.ts\" \"npm run dev --prefix client\""
+    "dev": "npx --yes nodemon server.ts"
   },
   "keywords": [],
   "author": "",

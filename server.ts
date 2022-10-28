@@ -164,7 +164,7 @@ app.get('/ip', (req: any, res: any) => {
 })
 
 app.get('*', async (req: any, res: any) => {
-    res.sendFile(path.join(__dirname, "client", "index.html"))
+    res.redirect('https://core.app/tools/testnet-faucet')
 })
 
 app.listen(process.env.PORT || 8000, () => {
