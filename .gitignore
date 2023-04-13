@@ -8,7 +8,7 @@ client/node_modules
 build
 
 # misc
-.env
+# .env
 
 # IDE
 .idea
