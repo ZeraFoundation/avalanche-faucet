@@ -83,19 +83,20 @@ const FaucetForm = (props: any) => {
                 })
             }
         })
-        
+
         setOptions(newOptions)
         setChain(newOptions[0]?.value)
     }, [chainConfigs])
 
     useEffect(() => {
-        let newOptions: DropdownOption[] = []
-        
+        let newOptions: DropdownOption[] = [] 
+
         chainConfigs?.forEach((chain: any, i: number) => {
             const { chain: ch } = getChainParams();
 
             let item = <div className='select-dropdown'>
-                <img alt = { chain.NAME[0] } src = { chain.IMAGE } />
+                <img alt={chain.NAME[0]} src={chain.IMAGE} />
+                
                 { chain.ID == ch ? chain.TOKEN : chain.NAME }
 
                 <span style={{color: 'rgb(180, 180, 183)', fontSize: "10px", marginLeft: "5px"}}>
@@ -106,7 +107,8 @@ const FaucetForm = (props: any) => {
                     }
                 </span>
             </div>
-
+            
+          
             if((chain.CONTRACTADDRESS && chain.HOSTID == ch) || chain.ID == ch) {
                 newOptions.push({
                     label: item,
@@ -175,7 +177,6 @@ const FaucetForm = (props: any) => {
             chain: chainConfigs[chain!]?.ID,
             erc20: chainConfigs[token!]?.ID
         }
-
         return params
     }
 
@@ -185,6 +186,7 @@ const FaucetForm = (props: any) => {
         if(isFetchingBalance) {
             isFetchingBalance.abort()
         }
+
         setIsFetchingBalance(controller)
 
         if((chain || chain == 0) && chainConfigs.length > 0) {
@@ -267,23 +269,6 @@ const FaucetForm = (props: any) => {
     }
 
 
-    function updateChain(option: any): void {
-        let chainNum: number = option.value
-        
-        if(chainNum >= 0 &&  chainNum < chainConfigs.length) {
-            setChain(chainNum)
-            back()
-        }
-    }
-
-    function updateToken(option: any): void {
-        let tokenNum: number = option.value
-        
-        if(tokenNum >= 0 &&  tokenNum < chainConfigs.length) {
-            setToken(tokenNum)
-            back()
-        }
-    }
 
     async function sendToken(): Promise<void> {
         if(!shouldAllowSend) {
@@ -314,106 +299,30 @@ const FaucetForm = (props: any) => {
         setIsLoading(false)
     }
 
-    const getOptionByValue = (value: any): DropdownOption => {
-        let selectedOption: DropdownOption = options[0]
-        options.forEach((option: DropdownOption): void => {
-            if(option.value == value) {
-                selectedOption = option
-            }
-        })
-        return selectedOption
+
+    const ChainDropdown = () => {
+        if (!tokenOptions[0]?.label) { 
+            return null
+        }
+        return (
+            <div className='chain-dropdown'>
+                {tokenOptions[0].label}
+            </div>
+        )
     }
 
-    const getTokenOptionByValue = (value: any): DropdownOption => {
-        let selectedOption: DropdownOption = tokenOptions[0]
-        tokenOptions.forEach((option: DropdownOption): void => {
-            if(option.value == value) {
-                selectedOption = option
-            }
-        })
-        return selectedOption
-    }
+    const TokenDropdown = () => {
 
-    const customStyles = {
-        control: (base: any, state: { isFocused: any }) => ({
-            ...base,
-            background: "#333",
-            borderRadius: state.isFocused ? "5px 5px 0 0" : 5,
-            borderColor: state.isFocused ? "white" : "#333",
-            boxShadow: null,
-            "&:hover": {
-                borderColor: "white"
-            }
-        }),
-        menu: (base: any) => ({
-            ...base,
-            borderRadius: 0,
-            marginTop: 0,
-            background: "rgb(45, 45, 45)",
-            color: "white"
-        }),
-        menuList: (base: any) => ({
-            ...base,
-            padding: 0,
-            "::-webkit-scrollbar": {
-                width: "2px"
-            },
-            "::-webkit-scrollbar-track": {
-                background: "black"
-            },
-            "::-webkit-scrollbar-thumb": {
-                background: "#888"
-            },
-            "::-webkit-scrollbar-thumb:hover": {
-                background: "#555"
-            }
-        }),
-        option: (styles: any, {isFocused, isSelected}: any) => ({
-            ...styles,
-            background: isFocused
-                    ?
-                    'black'
-                    :
-                    isSelected
-                    ?
-                    '#333'
-                    :
-                    undefined,
-            zIndex: 1
-        }),
-        input: (base: any) => ({
-            ...base,
-            color: "white"
-        }),
-        singleValue: (base: any) => ({
-            ...base,
-            color: "white"
-        })
-    }
+         if (!tokenOptions[1]?.label) { 
+            return null
+        } 
 
-    const ChainDropdown = () => (
-        <div style={{width: "100%", marginTop: "5px"}}>
-            <Select
-                options={options}
-                value={getOptionByValue(chain)}
-                onChange={updateChain}
-                styles={customStyles}
-                getOptionValue ={(option: any)=>option.search}
-            />
+        return <div style={{ width: "100%" }}> 
+             <div className='chain-dropdown'>
+                {tokenOptions[1].label}
+            </div>
         </div>
-    )
-
-    const TokenDropdown = () => (
-        <div style={{width: "100%"}}>
-            <Select
-                options={tokenOptions}
-                value={getTokenOptionByValue(token)}
-                onChange={updateToken}
-                styles={customStyles}
-                getOptionValue ={(option: any)=>option.search}
-            />
-        </div>
-    )
+    }
 
 
     const back = (): void => {
@@ -441,8 +350,9 @@ const FaucetForm = (props: any) => {
     return (
         <div className='container'>
             <div className = "box">
-                <div className='banner' style={{backgroundImage: `url(${props.config.banner})`}}/>
 
+                <h3 className='logo'>Zera</h3>
+                
                 <div className='box-content'>
                     <div className='box-header'>
                         <span>

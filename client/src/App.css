@@ -10,12 +10,16 @@ body::-webkit-scrollbar-thumb {
     background-color: rgb(113, 113, 113);
 }
 
+#root {
+    height: 100vh;
+}
+
 .app {
     font-family: Avenir,Helvetica,Arial,sans-serif;
-    padding-top: 5%;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    height: 100%;
 }
 
 @media screen and (max-width: 1010px) {
