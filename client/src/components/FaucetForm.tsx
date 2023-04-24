@@ -249,16 +249,16 @@ const FaucetForm = (props: any) => {
     return BigInt(amount);
   }
 
-  function calculateLargestUnit(
-    amount: string = "0",
-    decimals: number = 18,
-  ): string {
-    let base = "1";
-    for (let i = 0; i < decimals; i++) {
-      base += "0";
-    }
-    return (BigInt(amount) / BigInt(base)).toString();
-  }
+  // function calculateLargestUnit(
+  //   amount: string = "0",
+  //   decimals: number = 18,
+  // ): string {
+  //   let base = "1";
+  //   for (let i = 0; i < decimals; i++) {
+  //     base += "0";
+  //   }
+  //   return (BigInt(amount) / BigInt(base)).toString();
+  // }
 
   function chainToIndex(id: any): number | null {
     if (chainConfigs?.length > 0) {
@@ -319,24 +319,24 @@ const FaucetForm = (props: any) => {
     setIsLoading(false);
   }
 
-  const ChainDropdown = () => {
-    if (!tokenOptions[0]?.label) {
-      return null;
-    }
-    return <div className="chain-dropdown">{tokenOptions[0].label}</div>;
-  };
+  // const ChainDropdown = () => {
+  //   if (!tokenOptions[0]?.label) {
+  //     return null;
+  //   }
+  //   return <div className="chain-dropdown">{tokenOptions[0].label}</div>;
+  // };
 
-  const TokenDropdown = () => {
-    if (!tokenOptions[0]?.label) {
-      return null;
-    }
+  // const TokenDropdown = () => {
+  //   if (!tokenOptions[0]?.label) {
+  //     return null;
+  //   }
 
-    return (
-      <div style={{width: "100%"}}>
-        <div className="chain-dropdown">{tokenOptions[0].label}</div>
-      </div>
-    );
-  };
+  //   return (
+  //     <div style={{width: "100%"}}>
+  //       <div className="chain-dropdown">{tokenOptions[0].label}</div>
+  //     </div>
+  //   );
+  // };
 
   const back = (): void => {
     setSendTokenResponse({
@@ -345,30 +345,30 @@ const FaucetForm = (props: any) => {
     });
   };
 
-  const toString = (mins: number): string => {
-    if (mins < 60) {
-      return `${mins} minute${mins > 1 ? "s" : ""}`;
-    } else {
-      const hour = ~~(mins / 60);
-      const minute = mins % 60;
+  // const toString = (mins: number): string => {
+  //   if (mins < 60) {
+  //     return `${mins} minute${mins > 1 ? "s" : ""}`;
+  //   } else {
+  //     const hour = ~~(mins / 60);
+  //     const minute = mins % 60;
 
-      if (minute == 0) {
-        return `${hour} hour${hour > 1 ? "s" : ""}`;
-      } else {
-        return `${hour} hour${hour > 1 ? "s" : ""} and ${minute} minute${
-          minute > 1 ? "s" : ""
-        }`;
-      }
-    }
-  };
+  //     if (minute == 0) {
+  //       return `${hour} hour${hour > 1 ? "s" : ""}`;
+  //     } else {
+  //       return `${hour} hour${hour > 1 ? "s" : ""} and ${minute} minute${
+  //         minute > 1 ? "s" : ""
+  //       }`;
+  //     }
+  //   }
+  // };
 
   return (
     <div className="container">
       <div className="box">
-        <h3 className="logo">Zera</h3>
+        <h3 className="logo">ZERA</h3>
 
         <div className="box-content">
-          <div className="box-header">
+          {/* <div className="box-header">
             <span>
               <span style={{color: "grey"}}>Network</span>
             </span>
@@ -389,13 +389,11 @@ const FaucetForm = (props: any) => {
                 <TokenDropdown />
               </div>
             </div>
-          </div>
-
-          <br />
+          </div> */}
 
           <div style={{display: sendTokenResponse?.txHash ? "none" : "block"}}>
             <p className="rate-limit-text">
-              You will receive 2 Zera tokens.
+              Please provide your wallet address to request test tokens.
               {/* Drops are limited to
               <span>
                 {chainConfigs[token!]?.RATELIMIT?.MAX_LIMIT} request in{" "}
@@ -422,10 +420,6 @@ const FaucetForm = (props: any) => {
               {sendTokenResponse?.message}
             </span>
 
-            <div className="beta-alert">
-              <p>This is a testnet faucet. Funds are not real.</p>
-            </div>
-
             <button
               className={
                 shouldAllowSend ? "send-button" : "send-button-disabled"
@@ -440,6 +434,10 @@ const FaucetForm = (props: any) => {
                 </span>
               )}
             </button>
+
+            <div className="beta-alert">
+              <p>This is a testnet faucet. Funds are not real.</p>
+            </div>
           </div>
 
           <div style={{display: sendTokenResponse?.txHash ? "block" : "none"}}>
