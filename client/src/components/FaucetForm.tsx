@@ -365,7 +365,9 @@ const FaucetForm = (props: any) => {
   return (
     <div className="container">
       <div className="box">
-        <h3 className="logo">ZERA</h3>
+        <h3 className="logo">
+          <img src="/zera-text-logo-white.svg" />
+        </h3>
 
         <div className="box-content">
           {/* <div className="box-header">

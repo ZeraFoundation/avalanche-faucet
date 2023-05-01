@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Kade";
+  src: url("fonts/kade-regular.woff") format("woff");
+}
+
 body::-webkit-scrollbar {
   width: 2px;
 }
@@ -15,7 +20,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Kade;
   display: flex;
   justify-content: space-around;
   align-items: center;
