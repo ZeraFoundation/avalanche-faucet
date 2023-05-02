@@ -10,7 +10,7 @@ export default function AddNetwork(props: any) {
         }}>
         <img
           alt="metamask"
-          style={{width: "25px", height: "25px", marginRight: "5px"}}
+          style={{width: "25px", height: "25px", margin: "10px"}}
           src="/memtamask.webp"
         />
         Add Subnet to Metamask
@@ -30,7 +30,7 @@ export default function AddNetwork(props: any) {
         }}>
         <img
           alt="block-explorer"
-          style={{width: "25px", height: "25px"}}
+          style={{width: "25px", height: "25px", margin: "10px"}}
           src="/white-zera-logo.svg"
         />
         View Block Explorer
